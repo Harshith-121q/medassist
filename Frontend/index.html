@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedAssist — Clinic Operations & Patient Care Portal</title>
+  <meta name="description" content="Unified MERN clinic management portal for conflict-free appointment scheduling, digital EMR, doctor prescriptions, lab orders, and role-based coordination for patients, doctors, receptionists, and lab staff.">
+  <meta name="keywords" content="clinic management, patient portal, EMR, in-person appointments, doctor scheduling, digital prescriptions, lab orders, healthcare operations">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="MedAssist — Clinic Operations & Patient Care Portal">
+  <meta property="og:description" content="Streamlined in-person clinic appointments, digital health records, and coordinated care across 5 clinic roles.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./src/css/variables.css">
+  <link rel="stylesheet" href="./src/css/main.css">
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v20M2 12h20"/>
+          </svg>
+        </div>
+        <span>Med<span class="gradient-text">Assist</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#departments" class="nav-link">Departments</a></li>
+          <li><a href="#doctors" class="nav-link">Specialists</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="#careers" class="nav-link">Careers</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+
+        <!-- User / Auth Container (Separate Login & Register Buttons) -->
+        <div id="header-auth-container">
+          <button type="button" id="header-signin-btn" class="btn btn-outline" style="padding: 8px 18px; font-size: 0.85rem;">
+            Login
+          </button>
+          <button type="button" id="header-register-btn" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">
+            Register
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <!-- Hero Left: Content -->
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="pulse-dot"></span>
+          <span>Unified Clinic Operations & Patient Care Hub</span>
+        </div>
+
+        <h1 class="hero-title">
+          Modern Clinic Operations, <br>
+          <span class="gradient-text">Connected Patient Care</span>, <br>
+          Under One Roof.
+        </h1>
+
+        <p class="hero-description">
+          Book conflict-free in-person appointments with qualified doctors, manage complete clinical records digitally, and coordinate care seamlessly across your clinic — from reception check-in and doctor consultations to lab orders and billing invoices.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="window.openModal('booking-modal')">
+            <span>Book Clinic Appointment</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+
+          <a href="#careers" class="btn btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="8.5" cy="7" r="4"/>
+              <line x1="20" y1="8" x2="20" y2="14"/>
+              <line x1="23" y1="11" x2="17" y2="11"/>
+            </svg>
+            <span>Join Our Team / Careers</span>
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="hero-trust">
+          <div class="trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>HIPAA & EMR Compliant</span>
+          </div>
+          <div class="trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 8v4l3 3"/>
+            </svg>
+            <span>Conflict-Free Scheduling</span>
+          </div>
+          <div class="trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>5 Core Clinic Roles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Right: Clinical Operations Hub Preview (No fake vitals or ECG) -->
+      <div class="hero-visual">
+        <div class="floating-pill floating-pill-1">
+          <div style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981;"></div>
+          <div style="font-size: 0.85rem; font-weight: 600;">5 Unified Clinic Roles</div>
+        </div>
+
+        <div class="floating-pill floating-pill-2">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #0284c7, #10b981); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 0.75rem;">EMR</div>
+          <div style="font-size: 0.85rem; font-weight: 600;">Conflict-Free Appointments</div>
+        </div>
+
+        <div class="hero-main-card">
+          <div class="card-top">
+            <div class="patient-info">
+              <div class="clinic-badge-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <div>
+                <h4 style="font-size: 1.05rem; font-weight: 700;">MedAssist Clinical Portal</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Patient Record: Sarah Mitchell • #MED-84920</p>
+              </div>
+            </div>
+            <span class="live-badge" style="background: rgba(16, 185, 129, 0.12); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
+              <span class="pulse-dot" style="background: #10b981;"></span>
+              In-Clinic Visit
+            </span>
+          </div>
+
+          <!-- Real Clinical Care Timeline -->
+          <div class="portal-timeline">
+            <!-- Timeline Item 1: In-Person Appointment -->
+            <div class="timeline-row">
+              <div class="timeline-bullet scheduled">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <span class="timeline-title">Clinic Consultation • Dr. Evelyn Vance</span>
+                  <span class="timeline-status badge-success">Confirmed</span>
+                </div>
+                <div class="timeline-sub">Cardiology • Exam Room 204 • Today, 10:30 AM</div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 2: Doctor EMR Visit Note + AI Clinical Summary -->
+            <div class="timeline-row">
+              <div class="timeline-bullet note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <span class="timeline-title">Doctor Visit Notes</span>
+                  <span class="timeline-status badge-ai">AI Post-Visit Summary</span>
+                </div>
+                <div class="timeline-sub">Structured notes summarized for doctor review & official record</div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 3: Lab Order Tracking -->
+            <div class="timeline-row">
+              <div class="timeline-bullet lab">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 2v7.31L4.69 18.25A2 2 0 0 0 6.36 21h11.28a2 2 0 0 0 1.67-2.75L14 9.31V2"/></svg>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <span class="timeline-title">Diagnostic Lab Order (Lipid Panel)</span>
+                  <span class="timeline-status badge-info">Sample In Lab</span>
+                </div>
+                <div class="timeline-sub">Collected by Lab Tech • Verified by Attending Physician</div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 4: Digital Prescription with Plain Language Explanation -->
+            <div class="timeline-row">
+              <div class="timeline-bullet rx">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <span class="timeline-title">Verified Prescription & Care Plan</span>
+                  <span class="timeline-status badge-accent">AI Patient Guide</span>
+                </div>
+                <div class="timeline-sub">Doctor prescribed • Plain-language dosage explanation for patient</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Clinic Role Chips -->
+          <div class="portal-role-banner">
+            <div class="role-indicators">
+              <span class="role-chip">Admin</span>
+              <span class="role-chip active">Doctor</span>
+              <span class="role-chip">Receptionist</span>
+              <span class="role-chip">Lab Tech</span>
+              <span class="role-chip">Patient</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Browse Doctors by Department Section (Replaces AI Triage) -->
+  <section id="departments" class="departments-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Clinical Departments</span>
+        <h2 class="section-title">Browse Care by <span class="gradient-text">Department</span></h2>
+        <p class="section-subtitle">Select a department to view available in-clinic doctors, consultation fees, and schedule an appointment.</p>
+      </div>
+
+      <!-- Department Cards Grid (Dynamically Populated by JS) -->
+      <div id="departments-grid" class="departments-grid"></div>
+    </div>
+  </section>
+
+  <!-- Real Features Bento Grid -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Platform Architecture</span>
+        <h2 class="section-title">Built for Modern <span class="gradient-text">In-Person Clinic Operations</span></h2>
+        <p class="section-subtitle">A comprehensive MERN portal connecting patient journeys, clinical consultations, lab workflows, and administrative management.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Feature 1: Wide Card -->
+        <div class="glass-card bento-card wide">
+          <div>
+            <div class="feature-icon-box">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Appointment Scheduling & Live Availability</h3>
+            <p class="feature-desc">
+              Conflict-free calendar booking driven by real doctor working hours and shift availability. Eliminates double bookings, manages exam room assignments, and allows patient or receptionist scheduling.
+            </p>
+          </div>
+          <div class="bento-interactive-pill">
+            <span class="pulse-dot"></span>
+            <span>Conflict-free scheduling across <strong>all doctors & departments</strong></span>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card bento-card">
+          <div class="feature-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Unified Patient Timeline</h3>
+          <p class="feature-desc">
+            Single longitudinal view combining chronological clinic visits, doctor notes, issued prescriptions, diagnostic lab results, and billing invoices in one clear timeline.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card bento-card">
+          <div class="feature-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Digital Prescriptions & Plain-Language AI Guides</h3>
+          <p class="feature-desc">
+            Doctors issue verified digital prescriptions during the visit. Afterward, an AI assistant converts technical medical instructions into clear, readable guides for patients.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="glass-card bento-card">
+          <div class="feature-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 2v7.31L4.69 18.25A2 2 0 0 0 6.36 21h11.28a2 2 0 0 0 1.67-2.75L14 9.31V2"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">End-to-End Lab Order Tracking</h3>
+          <p class="feature-desc">
+            Transparent laboratory workflow: doctor issues lab order, technician collects sample and uploads findings, and doctor reviews & verifies results for patient release.
+          </p>
+        </div>
+
+        <!-- Feature 5: Wide Card -->
+        <div class="glass-card bento-card wide">
+          <div>
+            <div class="feature-icon-box">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Role-Based Dashboards for 5 Clinic Roles</h3>
+            <p class="feature-desc">
+              Dedicated interfaces tailored for Admin, Doctors, Receptionists, Lab Technicians, and Patients. Granular access controls, appointment check-ins, medical notes, and invoice generation.
+            </p>
+          </div>
+          <div class="bento-interactive-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Role-Specific Views • Audit Logs • Secure Token Authentication</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctors Directory Section (Driven by Doctor Schema Model) -->
+  <section id="doctors" class="doctors-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Medical Staff</span>
+        <h2 class="section-title">Meet Our <span class="gradient-text">Clinic Specialists</span></h2>
+        <p class="section-subtitle">Board-certified physicians available for in-person consultation at the clinic. Transparent consultation fees and verified credentials.</p>
+      </div>
+
+      <!-- Department Filter Pills -->
+      <div class="dept-filters">
+        <button class="dept-btn active" data-dept="all">All Departments</button>
+        <button class="dept-btn" data-dept="cardiology">Cardiology</button>
+        <button class="dept-btn" data-dept="neurology">Neurology</button>
+        <button class="dept-btn" data-dept="pediatrics">Pediatrics</button>
+        <button class="dept-btn" data-dept="orthopedics">Orthopedics</button>
+        <button class="dept-btn" data-dept="dermatology">Dermatology</button>
+        <button class="dept-btn" data-dept="general">General Medicine</button>
+      </div>
+
+      <!-- Dynamic Doctors Grid (Populated from Doctor Model Data) -->
+      <div id="doctors-grid" class="doctors-grid"></div>
+    </div>
+  </section>
+
+  <!-- How It Works Section (Reflecting In-Person Clinic Flow) -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Clinic Workflow</span>
+        <h2 class="section-title">Coordinated Care in <span class="gradient-text">3 Straightforward Steps</span></h2>
+        <p class="section-subtitle">Experience seamless in-person medical visits supported by a robust digital backend.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="glass-card step-card">
+          <div class="step-number">1</div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;">Register or Apply as Staff</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Patients create a secure account to manage bookings and health records. Medical professionals and clinic staff apply through our Careers portal for admin review.</p>
+        </div>
+
+        <div class="glass-card step-card">
+          <div class="step-number">2</div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;">Browse & Schedule Visit</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Explore departments, select your physician, and book an available consultation slot with conflict-free scheduling synced to the clinic calendar.</p>
+        </div>
+
+        <div class="glass-card step-card">
+          <div class="step-number">3</div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;">Visit Clinic & Track In Portal</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Check in at reception, complete your examination, and access visit summaries, digital prescriptions, lab test progress, and invoices in your patient portal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Counter Banner -->
+  <section class="stats-banner">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-num gradient-text" data-target="12000" data-suffix="+">0</div>
+          <div class="stat-desc">In-Person Clinic Visits</div>
+        </div>
+        <div>
+          <div class="stat-num gradient-text" data-target="6" data-suffix=" Departments">0</div>
+          <div class="stat-desc">Specialized Clinical Units</div>
+        </div>
+        <div>
+          <div class="stat-num gradient-text" data-target="5" data-suffix=" Roles">0</div>
+          <div class="stat-desc">Integrated Clinic Workflows</div>
+        </div>
+        <div>
+          <div class="stat-num gradient-text" data-target="100" data-suffix="%">0</div>
+          <div class="stat-desc">Conflict-Free Scheduling</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section (Cleaned of Telehealth / AI Diagnosis references) -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Patient Feedback</span>
+        <h2 class="section-title">Trusted for <span class="gradient-text">Care Excellence & Clarity</span></h2>
+        <p class="section-subtitle">Real feedback from patients who appreciate clear record-keeping, easy booking, and dedicated in-clinic care.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="glass-card review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"Booking my appointment was completely conflict-free. When I arrived at the clinic, reception checked me in within a minute. After Dr. Thorne's exam, my prescription with plain-language instructions was immediately available in my portal."</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">SL</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Sarah Lin</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Verified Patient • Neurology Clinic</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"Having our daughter's pediatric visit notes, follow-up lab orders, and invoices organized in one unified timeline has removed all the hassle from clinic visits. Dr. Chen and the reception team are wonderful."</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">MR</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Michael Rodriguez</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Verified Patient • Pediatrics Clinic</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">"The clarity of MedAssist's digital records is outstanding. Following my cardiology appointment with Dr. Vance, the lab technician processed my bloodwork promptly, and the verified report appeared on my portal the same day."</p>
+          </div>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">EH</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Elena Hernandez</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Verified Patient • Cardiology Clinic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Careers / Join Our Team Section (StaffApplication Workflow) -->
+  <section id="careers" class="careers-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Careers & Staff Recruitment</span>
+        <h2 class="section-title">Join Our <span class="gradient-text">Clinical Care Team</span></h2>
+        <p class="section-subtitle">We are expanding our healthcare operations. Apply for open positions as a medical doctor, front-desk receptionist, or laboratory technician.</p>
+      </div>
+
+      <div class="careers-grid">
+        <!-- Role 1: Doctor -->
+        <div class="glass-card career-card">
+          <div class="career-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2a5 5 0 0 1 5 5v2a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/>
+              <path d="M19 21v-2a7 7 0 0 0-14 0v2"/>
+              <path d="M12 12v6"/>
+              <path d="M9 15h6"/>
+            </svg>
+          </div>
+          <h3 class="career-role-title">Medical Doctor / Specialist</h3>
+          <p class="career-role-desc">Conduct in-clinic consultations, manage structured visit notes with AI summary review, issue prescriptions, and review diagnostic lab reports.</p>
+          <ul class="career-requirements">
+            <li>MD / MBBS with active medical license</li>
+            <li>Board certification or specialization</li>
+            <li>Clinical empathy and collaborative practice</li>
+          </ul>
+          <button class="btn btn-primary" style="width: 100%; padding: 10px; margin-top: 16px;" onclick="window.openStaffModal('DOCTOR')">
+            Apply as Doctor
+          </button>
+        </div>
+
+        <!-- Role 2: Receptionist -->
+        <div class="glass-card career-card">
+          <div class="career-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3 class="career-role-title">Clinic Receptionist</h3>
+          <p class="career-role-desc">Manage front-desk patient arrivals, schedule conflict-free appointments, verify intake documents, and coordinate billing invoices.</p>
+          <ul class="career-requirements">
+            <li>High school diploma or Associate degree</li>
+            <li>Strong customer service & organization</li>
+            <li>Proficiency with digital booking systems</li>
+          </ul>
+          <button class="btn btn-primary" style="width: 100%; padding: 10px; margin-top: 16px;" onclick="window.openStaffModal('RECEPTIONIST')">
+            Apply as Receptionist
+          </button>
+        </div>
+
+        <!-- Role 3: Lab Technician -->
+        <div class="glass-card career-card">
+          <div class="career-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 2v7.31L4.69 18.25A2 2 0 0 0 6.36 21h11.28a2 2 0 0 0 1.67-2.75L14 9.31V2"/>
+            </svg>
+          </div>
+          <h3 class="career-role-title">Laboratory Technician</h3>
+          <p class="career-role-desc">Receive lab orders, handle specimen collection, perform diagnostic tests, and upload laboratory results for physician verification.</p>
+          <ul class="career-requirements">
+            <li>MLT / MLS certification or related degree</li>
+            <li>Experience in clinical hematology & chemistry</li>
+            <li>Strict adherence to laboratory safety protocols</li>
+          </ul>
+          <button class="btn btn-primary" style="width: 100%; padding: 10px; margin-top: 16px;" onclick="window.openStaffModal('LAB_TECHNICIAN')">
+            Apply as Lab Tech
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (Reflecting Real Clinic Scope & AI Boundaries) -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Clear Answers</span>
+        <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+        <p class="section-subtitle">Learn about our clinic operations, in-person appointments, record security, and AI scope.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does appointment scheduling work at the clinic?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            Patients can browse clinic departments, select a doctor, and pick an open time slot. The system validates live doctor availability and clinic room allocation in real time, preventing double bookings and ensuring a smooth, scheduled in-person visit.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How is Artificial Intelligence (AI) used in MedAssist?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            AI in MedAssist is strictly limited to exactly two non-diagnostic administrative features used <strong>after</strong> an in-person visit: (1) converting a doctor's structured visit notes into a concise clinical summary for the doctor to review and approve, and (2) explaining doctor-issued prescriptions and follow-up instructions in plain language for the patient. AI never diagnoses, never triages symptoms, and never recommends specialists.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do digital prescriptions and lab orders work?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            During your in-person visit, your attending physician enters official digital prescriptions and diagnostic lab orders directly into the EMR. Lab technicians collect samples at the clinic and enter findings, which are verified by your doctor before being released to your patient timeline.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How can healthcare professionals apply to join MedAssist?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            Medical doctors, receptionists, and lab technicians can apply directly through our Careers section. Applications create a StaffApplication record in our database, which is reviewed by clinic administrators before setting up staff credentials.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is patient data and medical documentation secure?</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            Yes. MedAssist is designed with enterprise security standards adhering to HIPAA regulations. Patient EMR data, appointment logs, visit notes, lab results, and invoices are protected with role-based access controls and encrypted data transmission.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2 class="cta-title">Ready for Connected <span class="gradient-text">Clinic Care</span>?</h2>
+        <p class="cta-desc">Join patients and medical professionals using MedAssist for structured appointment booking, transparent health records, and cohesive clinic operations.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="window.openModal('booking-modal')">
+            <span>Schedule Clinic Visit</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <button class="btn btn-secondary" onclick="window.openStaffModal('DOCTOR')">
+            <span>Join Our Medical Staff</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <!-- Emergency Medical Disclaimer -->
+      <div class="disclaimer-banner">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span><strong>Medical Emergency Notice:</strong> MedAssist is an outpatient clinic operations portal. If you are experiencing a life-threatening medical emergency, please call 911 or proceed to the nearest hospital emergency department immediately.</span>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo" style="margin-bottom: 16px;">
+            <div class="logo-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
+            </div>
+            <span>Med<span class="gradient-text">Assist</span></span>
+          </div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">
+            Unified clinic operations & patient care portal. Providing conflict-free appointment scheduling, digital medical records, and coordinated workflows across 5 clinic roles.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Clinic Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#features" class="footer-link">Core Features</a></li>
+            <li><a href="#departments" class="footer-link">Clinical Departments</a></li>
+            <li><a href="#doctors" class="footer-link">Doctor Directory</a></li>
+            <li><a href="#how-it-works" class="footer-link">How It Works</a></li>
+            <li><a href="#careers" class="footer-link">Careers & Recruitment</a></li>
+            <li><a href="#faq" class="footer-link">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Portal Roles</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="window.openAuthModal('login')" class="footer-link">Patient Portal</a></li>
+            <li><a href="javascript:void(0)" onclick="window.openAuthModal('login')" class="footer-link">Doctor Dashboard</a></li>
+            <li><a href="javascript:void(0)" onclick="window.openAuthModal('login')" class="footer-link">Receptionist Desk</a></li>
+            <li><a href="javascript:void(0)" onclick="window.openAuthModal('login')" class="footer-link">Laboratory Workspace</a></li>
+            <li><a href="javascript:void(0)" onclick="window.openAuthModal('login')" class="footer-link">Administrator Console</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Join Our Clinic</h4>
+          <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 14px;">
+            Are you a doctor, receptionist, or lab technician? Join our staff today.
+          </p>
+          <button class="btn btn-secondary" style="width: 100%; padding: 10px; font-size: 0.85rem;" onclick="window.openStaffModal('DOCTOR')">
+            Submit Staff Application
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 MedAssist Healthcare Operations. HIPAA Compliant & EMR Certified.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">HIPAA Disclosure</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS
+       ========================================================================== -->
+
+  <!-- 1. Appointment Booking Modal (In-Clinic Appointments) -->
+  <div id="booking-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="window.closeModal('booking-modal')" aria-label="Close Modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div style="margin-bottom: 24px;">
+        <span class="section-badge" style="font-size: 0.75rem;">Clinic Appointment Scheduling</span>
+        <h3 style="font-size: 1.5rem; font-weight: 800; margin-top: 6px;">Schedule In-Person Visit</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Choose your doctor, pick an available slot, and confirm your in-clinic consultation.</p>
+      </div>
+
+      <form id="booking-form">
+        <div class="form-group">
+          <label class="form-label" for="booking-doctor-select">Select Attending Doctor</label>
+          <select id="booking-doctor-select" class="form-input" style="cursor: pointer;" required>
+            <!-- Populated dynamically by JS -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="booking-date">Appointment Date</label>
+          <input type="date" id="booking-date" class="form-input" required value="2026-09-17" min="2026-09-17">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Available Clinic Slots</label>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+            <button type="button" class="symptom-chip slot-chip" style="text-align: center; border-color: var(--primary); background: rgba(14, 165, 233, 0.2); color: #38bdf8;">09:30 AM</button>
+            <button type="button" class="symptom-chip slot-chip" style="text-align: center;">11:00 AM</button>
+            <button type="button" class="symptom-chip slot-chip" style="text-align: center;">02:15 PM</button>
+            <button type="button" class="symptom-chip slot-chip" style="text-align: center;">04:00 PM</button>
+            <button type="button" class="symptom-chip slot-chip" style="text-align: center;">05:30 PM</button>
+            <button type="button" class="symptom-chip slot-chip" style="text-align: center;">06:45 PM</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="booking-patient-name">Patient Full Name</label>
+          <input type="text" id="booking-patient-name" class="form-input" placeholder="e.g. John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="booking-patient-phone">Phone Number</label>
+          <input type="tel" id="booking-patient-phone" class="form-input" placeholder="+1 (555) 000-0000" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; margin-top: 10px;">
+          Confirm Clinic Appointment
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Authentication Modal (Direct Backend Integration) -->
+  <div id="auth-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="window.closeModal('auth-modal')" aria-label="Close Modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="auth-tabs">
+        <button id="tab-login" class="auth-tab active">Sign In</button>
+        <button id="tab-register" class="auth-tab">Create Account</button>
+      </div>
+
+      <!-- Sign In Form -->
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address</label>
+          <input type="email" id="login-email" class="form-input" placeholder="you@example.com" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <input type="password" id="login-password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 13px; margin-top: 8px;">
+          Sign In
+        </button>
+
+        <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 16px;">
+          Connected directly to MedAssist secure clinic backend auth.
+        </p>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" style="display: none;">
+        <div class="form-group">
+          <label class="form-label" for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" class="form-input" placeholder="Jane Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-email">Email Address</label>
+          <input type="email" id="reg-email" class="form-input" placeholder="jane.doe@example.com" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-phone">Mobile Phone Number (For Verification OTP)</label>
+          <input type="tel" id="reg-phone" class="form-input" placeholder="+91 98765 43210" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Password</label>
+          <input type="password" id="reg-password" class="form-input" placeholder="At least 6 characters (e.g. Pass123!)" required autocomplete="new-password">
+        </div>
+
+        <button type="submit" class="btn btn-accent" style="width: 100%; padding: 13px; margin-top: 8px;">
+          Create Patient Account & Get OTP
+        </button>
+
+        <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 16px;">
+          A 6-digit OTP will be sent to your mobile phone number for secure verification.
+        </p>
+      </form>
+
+      <!-- OTP Verification Form / Step -->
+      <div id="otp-verification-container" style="display: none;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <div style="width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(16, 185, 129, 0.2)); border: 1px solid rgba(56, 189, 248, 0.3); display: inline-flex; align-items: center; justify-content: center; color: #38bdf8; margin-bottom: 12px; box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+              <line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 6px;">Verify Mobile Number</h3>
+          <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.5;">
+            We sent a 6-digit verification code to<br/>
+            <b id="otp-phone-display" style="color: #38bdf8; font-size: 0.95rem;">+91 98765 43210</b>
+          </p>
+          <div id="otp-dev-hint" style="display: none; margin-top: 10px; padding: 8px 12px; background: rgba(16, 185, 129, 0.15); border: 1px dashed rgba(16, 185, 129, 0.4); border-radius: 8px; font-size: 0.85rem; color: #10b981;">
+            🔑 <span id="otp-dev-text">Verification OTP Code:</span> <b id="otp-dev-code" style="letter-spacing: 2px; font-size: 1rem; color: #38bdf8;"></b>
+          </div>
+        </div>
+
+        <form id="otp-form">
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label class="form-label" style="text-align: center; display: block; margin-bottom: 10px;">Enter 6-Digit Code</label>
+            <div class="otp-inputs-wrapper">
+              <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input-box" data-idx="0" required autocomplete="one-time-code">
+              <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input-box" data-idx="1" required>
+              <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input-box" data-idx="2" required>
+              <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input-box" data-idx="3" required>
+              <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input-box" data-idx="4" required>
+              <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input-box" data-idx="5" required>
+            </div>
+          </div>
+
+          <button type="submit" id="btn-verify-otp" class="btn btn-primary" style="width: 100%; padding: 13px;">
+            Verify Mobile & Complete Registration
+          </button>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 18px; font-size: 0.85rem;">
+            <button type="button" id="btn-back-to-register" style="color: var(--text-secondary); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 4px; font-weight: 500;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              Change Number
+            </button>
+
+            <div>
+              <span id="otp-timer-text" style="color: var(--text-muted);">Resend in <b id="otp-countdown" style="color: #38bdf8;">60</b>s</span>
+              <button type="button" id="btn-resend-otp" style="display: none; background: none; border: none; color: #38bdf8; font-weight: 700; cursor: pointer; text-decoration: underline;">
+                Resend OTP
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Staff Application Modal (StaffApplication Workflow) -->
+  <div id="staff-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="window.closeModal('staff-modal')" aria-label="Close Modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div style="margin-bottom: 24px;">
+        <span class="section-badge" style="font-size: 0.75rem;">Staff Recruitment</span>
+        <h3 style="font-size: 1.5rem; font-weight: 800; margin-top: 6px;">Join the Clinical Team</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Submit your application for review by clinic administration.</p>
+      </div>
+
+      <form id="staff-application-form">
+        <div class="form-group">
+          <label class="form-label" for="staff-role">Position Applying For</label>
+          <select id="staff-role" class="form-input" required style="cursor: pointer;">
+            <option value="DOCTOR">Medical Doctor / Clinical Specialist</option>
+            <option value="RECEPTIONIST">Receptionist / Front Desk Care Coordinator</option>
+            <option value="LAB_TECHNICIAN">Laboratory Technician</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="staff-name">Full Name</label>
+          <input type="text" id="staff-name" class="form-input" placeholder="e.g. Dr. Jane Mitchell" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="staff-email">Email Address</label>
+          <input type="email" id="staff-email" class="form-input" placeholder="jane.mitchell@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="staff-phone">Phone Number</label>
+          <input type="tel" id="staff-phone" class="form-input" placeholder="+1 (555) 234-5678" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="staff-qualification">Highest Qualification / Degree</label>
+          <input type="text" id="staff-qualification" class="form-input" placeholder="e.g. MD, MBBS, BS Medical Technology" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="staff-experience">Years of Experience</label>
+          <input type="text" id="staff-experience" class="form-input" placeholder="e.g. 5 years in clinical practice" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="staff-specialization">Clinical Specialization / Focus</label>
+          <input type="text" id="staff-specialization" class="form-input" placeholder="e.g. Cardiology, Hematology, Front Desk">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="staff-message">Cover Note / Bio</label>
+          <textarea id="staff-message" class="form-input" rows="3" placeholder="Brief statement regarding your clinical background and interest in joining MedAssist..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; margin-top: 10px;">
+          Submit Application
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Global helper for opening staff modal with selected role preselected
+    window.openStaffModal = function(role) {
+      const select = document.getElementById('staff-role');
+      if (select && role) {
+        select.value = role;
+      }
+      window.openModal('staff-modal');
+    };
+  </script>
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+### Health Check
+GET http://localhost:5000/api/health
+
+### 1. Register Patient (Public registration)
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "Password123!",
+  "phone": "+1234567890"
+}
+
+### 2. Login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john.doe@example.com",
+  "password": "Password123!"
+}
+
+### 3. Get Current User (Protected - relies on cookie or Bearer token)
+GET http://localhost:5000/api/auth/me
+
+### 4. Refresh Token
+POST http://localhost:5000/api/auth/refresh
+Content-Type: application/json
+
+{}
+
+### 5. Logout
+POST http://localhost:5000/api/auth/logout
