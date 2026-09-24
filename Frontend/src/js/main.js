@@ -1,7 +1,11 @@
 // MedAssist Main Application Logic — Clinic Operations & Patient Care Portal
 
 // --- Constants & Config ---
-const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api';
+const API_BASE = import.meta.env.VITE_API_URL || (
+  window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000/api'
+    : 'https://medassist-2asa.onrender.com/api'
+);
 
 // --- Clinical Departments Data (Matching Department Model) ---
 const DEPARTMENTS_DATA = [
@@ -328,7 +332,7 @@ function initAuthUI() {
 
 async function handleLogout() {
   try {
-    await fetch(`${API_BASE}/auth/logout`, { method: 'POST' });
+    await fetch(`${API_BASE}/auth/logout`, { method: 'POST', credentials: 'include' });
   } catch (err) {
     console.warn('Backend logout call skipped:', err);
   }
@@ -652,6 +656,7 @@ function initAuthModal() {
         const response = await fetch(`${API_BASE}/auth/resend-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
           body: JSON.stringify({ phone: pendingRegistration.phone })
         });
         const data = await response.json();
@@ -892,6 +897,7 @@ function initStaffApplicationModal() {
       const res = await fetch(`${API_BASE}/staff-applications`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(payload)
       });
       const data = await res.json();

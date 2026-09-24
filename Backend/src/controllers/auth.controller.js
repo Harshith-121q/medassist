@@ -6,7 +6,7 @@ const getCookieOptions = (maxAgeMs) => {
   return {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? "strict" : "lax",
+    sameSite: isProduction ? "none" : "lax",
     maxAge: maxAgeMs,
     path: "/"
   };
@@ -152,7 +152,7 @@ const logout = async (req, res) => {
     const clearOptions = {
       httpOnly: true,
       secure: env.nodeEnv === "production",
-      sameSite: env.nodeEnv === "production" ? "strict" : "lax",
+      sameSite: env.nodeEnv === "production" ? "none" : "lax",
       path: "/"
     };
 
